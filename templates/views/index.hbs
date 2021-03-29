@@ -10,12 +10,13 @@
             {{>header}}
             <form>
                 <input placeholder="Location" id="queryLocation">
-                <input placeholder="Units" id="queryUnits">
+                <input placeholder="Units (f)ahrenheit or (m)etric" id="queryUnits">
                 <button>Search</button>
             </form>
             <p id="resultError"></p>
-            <p id="resultLocation"></p>
+            <img id="weatherIcon" />
             <p id="resultForecast"></p>
+            <p id="resultLocation"></p>
         </div>
         {{>footer}}
         <script src="/js/app.js"></script>

@@ -12,18 +12,17 @@ const forecast = ({latitude, longitude}, units = 'm', callback) => {
         } else if (msgerror) {
             callback('Unable to get forecast.', undefined)
         } else {
-            var msg = 'Currently it is '
-            msg = msg + current.weather_descriptions[0]
-            msg = msg + ' in '
-            msg = msg + location.name
-            msg = msg + ', ' + location.region
-            msg = msg + ' of ' + location.country
-            msg = msg + '. The temperature is '
+            var msg = 'Currently the temperature is '
             msg = msg + current.temperature
             msg = msg + ' degrees. It feels like '
             msg = msg + current.feelslike
             msg = msg + ' degrees out.'
-            callback(undefined,msg)
+            const forecast = {
+                msg,
+                img: current.weather_icons[0],
+                location: location.name + ',' + location.region + ' of ' + location.country
+            }
+            callback(undefined,forecast)
         }
     
     })

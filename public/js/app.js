@@ -4,6 +4,7 @@ const queryUnits = document.querySelector('#queryUnits')
 const resultError = document.querySelector('#resultError')
 const resultLocation = document.querySelector('#resultLocation')
 const resultForecast = document.querySelector('#resultForecast')
+const resultImg = document.querySelector('#weatherIcon')
 
 weatherForm.addEventListener('submit', (e) => {
     e.preventDefault()
@@ -14,15 +15,17 @@ weatherForm.addEventListener('submit', (e) => {
     resultError.textContent = 'Loading...'
     resultLocation.textContent = ''
     resultForecast.textContent = ''
+    resultImg.textContent = ''
 
     fetch('/weather?address=' + location + '&units='+units).then((response) => {
-        response.json().then(({error, location, forecast} = data) => {
+        response.json().then(({error, forecast} = data) => {
             if (error) {
                 resultError.textContent = error
             } else {
                 resultError.textContent = ''
-                resultLocation.textContent = location
-                resultForecast.textContent = forecast
+                resultLocation.textContent = forecast.location
+                resultForecast.textContent = forecast.msg
+                resultImg.src = forecast.img
             }
         })
     })
