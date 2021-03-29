@@ -7,8 +7,7 @@ const geoCode = (location, callback) => {
     const url = geoCodeBaseURL + encodeURIComponent(location) + '.json?access_token=' + geocodeAccess_Token
 
     request({ url, json: true }, (error, {body}) => {
-        console.log(body)
-        
+      
         if (error) {
             callback("Unable to connect to location services!", undefined)
         } else if (body.message) {
